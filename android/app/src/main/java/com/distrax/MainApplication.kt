@@ -7,6 +7,10 @@ import com.facebook.react.ReactHost
 import com.facebook.react.ReactNativeApplicationEntryPoint.loadReactNative
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 
+import com.distrax.modules.usagestats.UsageStatsPackage
+import com.distrax.modules.overlay.OverlayPackage
+import com.distrax.modules.timer.TimerPackage
+
 class MainApplication : Application(), ReactApplication {
 
   override val reactHost: ReactHost by lazy {
@@ -14,8 +18,10 @@ class MainApplication : Application(), ReactApplication {
       context = applicationContext,
       packageList =
         PackageList(this).packages.apply {
-          // Packages that cannot be autolinked yet can be added manually here, for example:
-          // add(MyReactNativePackage())
+          // Packages that cannot be autolinked yet can be added manually here:
+          add(UsageStatsPackage())
+          add(OverlayPackage())
+          add(TimerPackage())
         },
     )
   }
@@ -25,3 +31,4 @@ class MainApplication : Application(), ReactApplication {
     loadReactNative(this)
   }
 }
+
